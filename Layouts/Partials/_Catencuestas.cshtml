@@ -1,0 +1,19 @@
+﻿@{
+	var db = Database.Open("Dawemos");
+	var sqlSelect = "SELECT * FROM Encuestas";    
+}
+
+<ul>
+    <li id="titcat">Votar</li>
+@foreach (var encuesta in db.Query(sqlSelect))
+{
+	<li><a href="~/Votar/@encuesta.Nombre">@encuesta.Nombre</a></li>
+}
+</ul>
+<ul>
+    <li id="titcat">Resultados</li>
+@foreach (var encuesta in db.Query(sqlSelect))
+{
+	<li><a href="~/Resultados/@encuesta.Nombre">@encuesta.Nombre</a></li>
+}
+</ul>

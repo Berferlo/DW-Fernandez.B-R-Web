@@ -1,0 +1,30 @@
+﻿@{
+    
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Dawemos</title>
+    </head>
+    <body>
+		<div id="contenedor">
+			<div id="cabecera">
+               <a href="@Href("~/")"><img id="logo" src="~/ima/logo2.png" alt="logo" style="height: 50%; padding-top: 5px; float: left; margin: 15px"></a>
+			</div>
+			<div id="content">
+				<div id="encuestas">
+				    @RenderPage("~/Layouts/Partials/_Catencuestas.cshtml")
+			    </div>
+			    <div id="main">
+				    @RenderBody()
+			    </div>
+			</div>
+			<div id="footer">
+				&copy;@DateTime.Now.Year Dawemos. Todos los derechos reservados.
+			</div>
+		</div>        
+    </body>
+</html>

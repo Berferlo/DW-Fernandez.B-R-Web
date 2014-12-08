@@ -1,0 +1,55 @@
+﻿@{
+	Layout = "~/Layouts/_Layout.cshtml";
+
+	var nombreEncuesta = UrlData[0];
+
+	if(nombreEncuesta.IsEmpty())
+	{
+		Response.Redirect("~/Default");
+	}
+
+	Page.Title = nombreEncuesta;
+    
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <link href="@Href("~/css/style.css")" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="votacion">
+                <form id="formvotar" method="post" action="">
+                <div id="hueco"></div>      
+                <p id="tittabla">@nombreEncuesta</p>
+                <table id="tablavotar">                           
+                    <tr>
+                        <td><input type="radio" name="encuesta" value="Eneko">Eneko B&oacute;veda</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="encuesta" value="Santi">Santi Mina</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="encuesta" value="Paco">Paco Alc&aacute;cer</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="encuesta" value="Bruno">Bruno Soriano</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="encuesta" value="Hector">H&eacute;ctor Yuste</td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" name="numenc" value=3></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="bvotar" value="Votar" style="width:120px; height:30px; margin-left:15px; margin-top:10px;"></td>
+                       <!--<td><a href="validavoto.php"><img id="botvotar" src="ima/bvotar2.png"></a></td>-->
+                    </tr>
+                </table>
+                </form>
+            </div>
+    </body>
+</html>

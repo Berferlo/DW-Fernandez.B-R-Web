@@ -1,0 +1,156 @@
+*, html, body {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	background-color: #efefef;
+	color: #333;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: .75em;
+}
+
+a:link {
+	color: #106f99;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #106f99;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #003050;
+	text-decoration: none;
+}
+
+h1 {
+	margin-bottom: 10px;
+}
+
+input, select {
+	padding: 5px;
+}
+
+input[type="text"] 
+{
+	border: 1px solid #cdcdcd;
+}
+
+/* Layout */
+
+#contenedor {
+	margin: 0 auto;
+	width: 960px;
+	background-color: #fff;
+}
+
+#cabecera {
+	height: 74px;
+    background-color: rgb(24, 34, 55);
+}
+
+#content, #footer {
+	border-top: 1px solid #cdcdcd;
+	clear: both;
+	margin: 0px 10px 0px 10px;
+	padding: 20px;
+}
+
+#footer {
+	color: #cdcdcd;
+	padding: 10px;
+	text-align: center;
+}
+
+/*#logo {
+	float: left;
+	margin: 15px;
+	font-size: 3em;
+    height: 20%;
+}*/
+
+/* Añadidos 2 elementos en el layout */
+
+#encuestas {
+	float: left;
+	width: 165px;
+}
+
+#main {
+	float: right;
+	width: 705px;
+	margin-bottom: 20px;
+	border-left: 1px solid #cdcdcd;
+	padding-left: 20px;
+}
+
+/* Pagelet de categorias */
+#titcat{
+    font-weight: bold; 
+    text-align: center;
+    background-color: rgb(24, 34, 55);
+    color: white;
+}
+
+#titcat:hover{
+    background-color: rgb(24, 34, 55) !important;
+    color: white !important;
+}
+
+#encuestas ul {
+	border-bottom: 1px solid #cdcdcd;
+	margin-bottom: 20px;
+}
+
+#encuestas ul li {
+	list-style: none;
+	border-top: 1px solid #cdcdcd;
+	margin: 0;
+	padding: 10px;
+}
+
+#encuestas ul li:hover {
+	background-color: #c6d8ff;
+}
+
+/*Tabla de votar*/
+
+#votacion{
+    height:300px;
+    width:60%;
+    border: 1px solid black;
+    background-color: white;
+    margin:0 auto;
+    margin-top:30px;
+    border-radius: 1px 1px 5px 5px;
+    box-shadow: 1px 1px 1px 1px black;
+    color: #313131;
+}
+/*#hueco{
+    height: 20px;
+}*/
+#tittabla{
+    color: white;
+    font-size: 35px;
+    text-align: center;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: rgb(24, 34, 55);
+    box-shadow: 1px 1px 1px 2px black;
+}
+
+#tablavotar{
+    width: 95%;
+    margin:  0 auto;
+    font-size: 20px;
+    margin-top: 35px;
+    margin-left: 123px;
+}
+
+input[type="radio"] {
+    margin-right:5px;
+}
