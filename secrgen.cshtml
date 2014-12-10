@@ -6,16 +6,7 @@
     var usu=WebSecurity.CurrentUserName;
 	var nombreEncuesta = UrlData[0];
 
-	Page.Title = nombreEncuesta;
-    var db = Database.Open("Dawemos");
-    var sqlCommand2 = "SELECT * FROM Votaciones WHERE userName=@0 AND numEncuesta=@1";
-    var existUser = db.Query(sqlCommand2, usu, id);
-
-    if(existUser.Count()>0)
-    {
-        Response.Redirect("~/existUser");
-    }
-    
+	Page.Title = nombreEncuesta;   
 }
 
 <!DOCTYPE html>

@@ -1,12 +1,25 @@
 ﻿@{
     var id=Request.QueryString["id"];
     var idi=Convert.ToInt32(id);
+    var usu=WebSecurity.CurrentUserName;
+	var nombreEncuesta = UrlData[0];
+
+    var db = Database.Open("Dawemos");
+    var sqlCommand2 = "SELECT * FROM Votaciones WHERE userName=@0 AND numEncuesta=@1";
+    var existUser = db.Query(sqlCommand2, usu, id);
 
 	if(idi==1)
     {
         if(@WebSecurity.IsAuthenticated)
         {
-            Response.Redirect("~/secrgen");
+            if(existUser.Count()>0)
+            {
+                Response.Redirect("~/existUser");
+            }  
+            else
+            {
+                Response.Redirect("~/secrgen");
+            }
         }
         else
         {
@@ -17,18 +30,39 @@
     {
         if(@WebSecurity.IsAuthenticated)
         {
-            Response.Redirect("~/subsgen");
+            if(existUser.Count()>0)
+            {
+                Response.Redirect("~/existUser");
+            }  
+            else
+            {
+                Response.Redirect("~/subsgen");
+            }
         }
         else
         {
-            Response.Redirect("~/login");
+            if(existUser.Count()>0)
+            {
+                Response.Redirect("~/existUser");
+            }  
+            else
+            {
+                Response.Redirect("~/login");
+            }
         }
     }
     else if(idi==3)
     {
         if(@WebSecurity.IsAuthenticated)
         {
-            Response.Redirect("~/comgar");
+            if(existUser.Count()>0)
+            {
+                Response.Redirect("~/existUser");
+            }  
+            else
+            {
+                Response.Redirect("~/comgar");
+            }
         }
         else
         {
@@ -39,7 +73,14 @@
     {
         if(@WebSecurity.IsAuthenticated)
         {
+            if(existUser.Count()>0)
+            {
+                Response.Redirect("~/existUser");
+            }  
+            else
+            {
             Response.Redirect("~/consciu");
+            }
         }
         else
         {
