@@ -1,9 +1,20 @@
 ﻿@{
 	Layout = "~/Layouts/_Layout.cshtml";
 
+    var id=Request.QueryString["id"];
+    var idi=Convert.ToInt32(id);
+    var usu=WebSecurity.CurrentUserName;
 	var nombreEncuesta = UrlData[0];
 
 	Page.Title = nombreEncuesta;
+    var db = Database.Open("Dawemos");
+    var sqlCommand2 = "SELECT * FROM Votaciones WHERE userName=@0 AND numEncuesta=@1";
+    var existUser = db.Query(sqlCommand2, usu, id);
+
+    if(existUser.Count()>0)
+    {
+        Response.Redirect("~/existUser");
+    }
     
 }
 

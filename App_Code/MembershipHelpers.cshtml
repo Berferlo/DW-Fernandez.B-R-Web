@@ -20,11 +20,3 @@
     </div>
 }
 
-@helper existeUsuarioEncuesta()
-{
-    var db = Database.Open("Dawemos");
-    var sqlCommand = "SELECT * FROM Votaciones WHERE userName="+usu+ " AND numEncuesta="+id;
-    var result = db.Query(sqlCommand);
-
-    
-}

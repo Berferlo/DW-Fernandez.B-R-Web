@@ -3,18 +3,22 @@
 
     var id=Request.QueryString["id"];
     var idi=Convert.ToInt32(id);
+    var usu=WebSecurity.CurrentUserName;
 
     var db = Database.Open("Dawemos");
-    var sqlCommand = "SELECT voto, COUNT(voto)as Nvotos from Votaciones where numEncuesta="+idi+" GROUP BY voto";
+    var sqlCommand = "SELECT voto, COUNT(voto)as Nvotos from Votaciones WHERE numEncuesta="+idi+" GROUP BY voto";
     var result = db.Query(sqlCommand);
 
-    var total = "SELECT COUNT(voto)as Nvotos from Votaciones where numEncuesta="+idi;
+    var total = "SELECT COUNT(voto)as Nvotos from Votaciones WHERE numEncuesta="+idi;
     var restotal = db.Query(total);
 
+    
         if(!@WebSecurity.IsAuthenticated)
         {
             Response.Redirect("~/login");
         }
+
+
 }
 
 <!DOCTYPE html>
