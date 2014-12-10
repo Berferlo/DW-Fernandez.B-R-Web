@@ -1,19 +1,23 @@
 ﻿@{
 	var db = Database.Open("Dawemos");
-	var sqlSelect = "SELECT * FROM Encuestas";    
+	var sqlSelect = "SELECT * FROM Encuestas";   
+    var cont=1; 
+    var cont2=1;
 }
 
 <ul>
     <li id="titcat">Votar</li>
 @foreach (var encuesta in db.Query(sqlSelect))
 {
-	<li><a href="~/Votar/@encuesta.Nombre">@encuesta.Nombre</a></li>
+	<li><a href="~/Votar/@encuesta.Nombre?id=@cont">@encuesta.Nombre</a></li>
+    cont++;
 }
 </ul>
 <ul>
     <li id="titcat">Resultados</li>
 @foreach (var encuesta in db.Query(sqlSelect))
 {
-	<li><a href="~/Resultados/@encuesta.Nombre">@encuesta.Nombre</a></li>
+	<li><a href="~/Resultados/@encuesta.Nombre?id=@cont2">@encuesta.Nombre</a></li>  
+    cont2++;
 }
 </ul>

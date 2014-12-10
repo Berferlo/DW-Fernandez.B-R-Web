@@ -1,5 +1,20 @@
 ﻿@{
-    
+    Layout = "~/Layouts/_Layout.cshtml";
+
+    var id=Request.QueryString["id"];
+    var idi=Convert.ToInt32(id);
+
+    var db = Database.Open("Dawemos");
+    var sqlCommand = "SELECT voto, COUNT(voto)as Nvotos from Votaciones where numEncuesta="+idi+" GROUP BY voto";
+    var result = db.Query(sqlCommand);
+
+    var total = "SELECT COUNT(voto)as Nvotos from Votaciones where numEncuesta="+idi;
+    var restotal = db.Query(total);
+
+        if(!@WebSecurity.IsAuthenticated)
+        {
+            Response.Redirect("~/login");
+        }
 }
 
 <!DOCTYPE html>
@@ -7,9 +22,33 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title></title>
+        <title>Resultados</title>
+        <link href="@Href("~/css/style.css")" rel="stylesheet" />
     </head>
     <body>
-        
+        <div id="votacion">
+        <p id="tittabla">Resultados</p>
+        <table id="tablaRes">         
+            <tr>
+                <td style="font-weight: bold; text-align: left">Nombre</td>
+                <td style="font-weight: bold;">Votos</td>
+            </tr>
+
+            @foreach (var fila in result)
+            {
+                <tr>
+                    <td style="color: #808080; text-align: left; padding-top: 10px">@fila.voto</td>
+                    <td style="color: #808080; padding-top: 10px;">@fila.Nvotos</td>
+                </tr>
+            }
+
+            @foreach (var fila2 in restotal)
+            {
+                <tr style="font-weight: bold;">
+                   <td style="padding-top: 20px; text-align: left;">Total Votos:</td> <td style="padding-top: 20px">@fila2.Nvotos</td>
+                </tr>
+            }
+        </table>
+        </div>
     </body>
 </html>

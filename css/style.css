@@ -71,6 +71,22 @@ input[type="text"]
     height: 20%;
 }*/
 
+#registro{
+    float: right !important;   
+    margin-top: 15px;
+    margin-right: 10px;
+    color: white;
+}
+
+#registro a{
+    color: white;
+}
+
+#registro a:hover{
+    color: #106f99;
+}
+
+
 /* Añadidos 2 elementos en el layout */
 
 #encuestas {
@@ -153,4 +169,13 @@ input[type="text"]
 
 input[type="radio"] {
     margin-right:5px;
+}
+
+/*Tabla resultados*/
+
+#tablaRes{
+    margin: 0 auto;
+    font-size: 20px;
+    padding: 4px;
+    text-align: center;
 }

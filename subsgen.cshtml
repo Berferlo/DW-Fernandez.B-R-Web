@@ -1,0 +1,50 @@
+﻿@{
+	Layout = "~/Layouts/_Layout.cshtml";
+
+	var nombreEncuesta = UrlData[0];
+
+	Page.Title = nombreEncuesta;
+    
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <link href="@Href("~/css/style.css")" rel="stylesheet" />
+    </head>
+    <body>
+        <div id="votacion">
+                <form id="formvotar" method="post" action="validaVoto">
+                <div id="hueco"></div>      
+                <p id="tittabla">Subsecretar&iacute;a General</p>
+                <table id="tablavotar">                           
+                    <tr>
+                        <td><input type="radio" name="encuesta" value="Franciso Gonzalez">Franciso Gonzalez</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="encuesta" value="Manuel Zuñiga">Manuel Zuñiga</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="encuesta" value="Maria Herrera">Maria Herrera</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="encuesta" value="Jose Ibañez">José Ibañez</td>
+                    </tr>
+                    <tr>
+                        <td><input type="radio" name="encuesta" value="Laura Sanz">Laura Sanz</td>
+                    </tr>
+                    <tr>
+                        <td><input type="hidden" name="numenc" value=2></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" id="bvotar" value="Votar" style="width:120px; height:30px; margin-left:15px; margin-top:10px;"></td>
+                       <!--<td><a href="validavoto.php"><img id="botvotar" src="ima/bvotar2.png"></a></td>-->
+                    </tr>
+                </table>
+                </form>
+            </div>
+    </body>
+</html>

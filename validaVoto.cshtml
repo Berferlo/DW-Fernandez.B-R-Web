@@ -1,0 +1,31 @@
+﻿@{
+    if(!WebSecurity.IsAuthenticated)
+    {
+        Response.Redirect("~/Default");
+    }
+
+    if(WebSecurity.IsAuthenticated && Request["encuesta"]!=null && Request["numenc"]!=null)
+    {
+    
+    var mensaje = "";
+
+    if(IsPost)
+    {
+        var nombre = WebSecurity.CurrentUserName;
+        var voto = Request["encuesta"];
+        var encuesta = Request["numenc"];
+
+        var db = Database.Open("Dawemos");
+        var sqlCommand = "INSERT INTO Votaciones " +
+                         "(userName, numEncuesta, voto)" +
+                         "VALUES (@0, @1, @2)";
+
+        db.Execute(sqlCommand, nombre, encuesta, voto);
+
+        mensaje = String.Format("Alumno añadido con ID = {0}", db.GetLastInsertId());
+
+        Response.Redirect(@Href("~/votoValid"));
+    }
+    
+}
+}

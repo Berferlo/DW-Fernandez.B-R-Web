@@ -1,6 +1,6 @@
 ﻿@helper AccountSummary()
 {
-    <div id="accountSummary">
+    <div id="registro">
         @if(WebSecurity.IsAuthenticated){
             
             <p>
@@ -14,9 +14,17 @@
         {
             <p>
                 <a href="@Href("~/login")">Iniciar sesion</a> |
-                <a href="@Href("~/register")">Register</a>
+                <a href="@Href("~/Registrar")">Registrarse</a>
             </p>
         }
     </div>
 }
 
+@helper existeUsuarioEncuesta()
+{
+    var db = Database.Open("Dawemos");
+    var sqlCommand = "SELECT * FROM Votaciones WHERE userName="+usu+ " AND numEncuesta="+id;
+    var result = db.Query(sqlCommand);
+
+    
+}

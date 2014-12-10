@@ -1,0 +1,76 @@
+﻿@{
+     Layout = "~/Layouts/_Layout.cshtml";
+
+    var username = "";
+    var password = "";
+    
+    Validation.RequireField("username","El campo Usuario no puede estar en blanco");
+    Validation.RequireField("password","El campo password no puede estar en blanco");
+   
+    if(IsPost){
+        username=Request["username"];
+        password=Request["password"];
+
+          var rememberMe = Request ["rememberMe"].AsBool();
+
+        if(Validation.IsValid())
+        {
+            if(WebSecurity.Login(username,password,rememberMe))
+            {   
+                if(Request.QueryString["sender"]!=null)
+                {
+                    Response.Redirect(Request.QueryString["sender"]);
+                }
+                else
+                {
+                    Response.Redirect("~/default");  
+                }
+            }   
+            else
+            {
+                Validation.AddFormError("No es posible iniciar sesion");
+            }
+        }
+   }
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <link href="@Href("~/css/style.css")" rel="stylesheet" />
+    </head>
+    <body>
+        <h1>Iniciar sesion</h1>
+        @Html.ValidationSummary()
+
+        <form action="login?@Request.QueryString" method="post">
+
+             <div>
+                @Html.Label("Usuario:","username")<br/>
+                @Html.TextBox("username",username)
+                @Html.ValidationMessage("username") 
+           </div>
+
+            <div>
+                @Html.Label("Contraseña:","password")<br/>
+                @Html.Password("password",password)
+                @Html.ValidationMessage("password") 
+            </div>
+            <div>
+                @Html.CheckBox("rememberMe",new{Value="true"})
+                @Html.Label("Recordarme en este equipo","rememberMe")
+           </div>
+
+            <div>
+            <input type="submit" value="Iniciar sesion"/>
+            </div>
+
+        </form>
+        <div>
+            <a href="forgotPassword">He olvidado mi contraseña!</a>
+        </div>
+    </body>
+</html>

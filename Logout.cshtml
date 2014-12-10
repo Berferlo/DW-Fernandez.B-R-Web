@@ -1,0 +1,19 @@
+﻿@{
+     Layout = "~/Layouts/_Layout.cshtml";
+    WebSecurity.Logout();
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Cerrar sesion</title>
+        <link href="@Href("~/css/style.css")" rel="stylesheet" />
+    </head>
+    <body>
+            <h1>Cerrar sesion</h1>
+            <p>Hemos cerrado tu sesion en esta web</p>
+        <p> <a href="@Href("~/default")">Volver a la p&aacute;gina de inicio </a> </p>
+    </body>
+</html>
