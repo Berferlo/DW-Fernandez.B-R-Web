@@ -1,0 +1,10 @@
+﻿@{
+    var db = Database.Open("Dawemos");
+    var data = db.Query("SELECT voto, COUNT(voto)as Nvotos from Votaciones WHERE numEncuesta=2 GROUP BY voto");
+    var myChart = new Chart(width: 200, height: 200)
+        .AddTitle("Subsecretaría General")
+        .AddSeries("Default", chartType: "Stock",
+        xValue: data, xField: "voto",
+        yValues: data, yFields: "Nvotos")
+        .Write();
+}

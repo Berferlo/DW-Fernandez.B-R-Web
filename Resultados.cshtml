@@ -4,13 +4,14 @@
     var id=Request.QueryString["id"];
     var idi=Convert.ToInt32(id);
     var usu=WebSecurity.CurrentUserName;
+    var titulo="";
 
     var db = Database.Open("Dawemos");
-    var sqlCommand = "SELECT voto, COUNT(voto)as Nvotos from Votaciones WHERE numEncuesta="+idi+" GROUP BY voto";
-    var result = db.Query(sqlCommand);
+    var sqlCommand = "SELECT voto, COUNT(voto)as Nvotos from Votaciones WHERE numEncuesta=@0 GROUP BY voto";
+    var result = db.Query(sqlCommand,idi);
 
-    var total = "SELECT COUNT(voto)as Nvotos from Votaciones WHERE numEncuesta="+idi;
-    var restotal = db.Query(total);
+    var total = "SELECT COUNT(voto)as Nvotos from Votaciones WHERE numEncuesta=@0";
+    var restotal = db.Query(total,idi);
 
     
         if(!@WebSecurity.IsAuthenticated)
@@ -18,6 +19,22 @@
             Response.Redirect("~/login");
         }
 
+        if(idi==1)
+        {
+             titulo="Secretaría General";
+        }
+        else if(idi==2)
+        {
+             titulo="Subsecretaría General";
+        }
+        else if(idi==3)
+        {
+             titulo="Comisión de Garantías";
+        }
+        else if(idi==4)
+        {
+             titulo="Consejo Ciudadadno";
+        }
 
 }
 
@@ -31,7 +48,7 @@
     </head>
     <body>
         <div id="votacion">
-        <p id="tittabla">Resultados</p>
+        <p id="tittabla">@titulo</p>
         <table id="tablaRes">         
             <tr>
                 <td style="font-weight: bold; text-align: left">Nombre</td>
@@ -41,8 +58,8 @@
             @foreach (var fila in result)
             {
                 <tr>
-                    <td style="color: #808080; text-align: left; padding-top: 10px">@fila.voto</td>
-                    <td style="color: #808080; padding-top: 10px;">@fila.Nvotos</td>
+                    <td style="color: #808080; text-align: left; padding-top: 6px">@fila.voto</td>
+                    <td style="color: #808080; padding-top: 6px;">@fila.Nvotos</td>
                 </tr>
             }
 
@@ -53,6 +70,24 @@
                 </tr>
             }
         </table>
+        </div>
+        <div id="grafico">
+            @if(idi==1)
+            {
+                <p><img src="~/Charts/chart.cshtml" alt="grafico1"/> </p>
+            }
+            @if(idi==2)
+            {
+                <p><img src="~/Charts/chart2.cshtml" alt="grafico2"/> </p>
+            }
+            @if(idi==3)
+            {
+                <p><img src="~/Charts/chart3.cshtml" alt="grafico3"/> </p>
+            }
+            @if(idi==4)
+            {
+                <p><img src="~/Charts/chart4.cshtml" alt="grafico4"/> </p>
+            }
         </div>
     </body>
 </html>
